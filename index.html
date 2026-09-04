@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dflip/js/dflip.min.js"></script>
     
     <script>
-        // Globally disable the download button
+        // Globally disable the download button via JS
         var dfOptions = { hideDownload: true };
 
         // Switch to selected flipbook
@@ -45,8 +45,8 @@
             justify-content: center;
             align-items: center;
             gap: 50px;
-            background-color: #f0f2f5; /* Subtle corporate grey */
-            flex-direction: column; /* Stack vertically for title */
+            background-color: #f0f2f5;
+            flex-direction: column;
         }
 
         #landing-title {
@@ -64,36 +64,36 @@
         /* Office Smart Cards */
         .card {
             background: #ffffff;
-            width: 260px; /* Structured width */
-            border-radius: 4px; /* Minimal, clean edges */
+            width: 260px;
+            border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Soft, subtle shadow */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden; /* Contains the image */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 1px solid #e1e4e8; /* Fine structure */
+            border: 1px solid #e1e4e8;
         }
         
         .card:hover { 
             transform: translateY(-8px); 
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12); /* Lift and depth on hover */
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
         }
 
         /* Image Preview (Thumbnail) Container */
         .thumb-container {
             width: 100%;
-            height: 180px; /* Fixed height for consistency */
+            height: 180px;
             overflow: hidden;
-            background-color: #eaeaea; /* Placeholder grey */
+            background-color: #eaeaea;
             border-bottom: 1px solid #e1e4e8;
         }
 
         .thumb-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image fills space neatly without distortion */
-            object-position: top; /* Prioritize top of PDF (cover) */
+            object-fit: cover;
+            object-position: top;
         }
 
         /* Text Content within Card */
@@ -129,6 +129,11 @@
         }
         .back-btn:hover { background: #000; }
         
+        /* Force hide the download and share buttons via CSS */
+        .df-ui-download, .df-ui-share { 
+            display: none !important; 
+        }
+        
         ._df_book { height: 100vh; width: 100vw; }
     </style>
 </head>
@@ -139,7 +144,7 @@
         <div id="landing-title">Select Portfolio</div>
         
         <div class="selection-container">
-            <!-- Portfolio 1 Card with Image Preview -->
+            <!-- Portfolio 1 Card -->
             <div class="card" onclick="openPortfolio('book1-wrapper')">
                 <div class="thumb-container">
                     <img src="thumb1.jpg" alt="Selected Works Cover" class="thumb-image">
@@ -150,7 +155,7 @@
                 </div>
             </div>
 
-            <!-- Portfolio 2 Card with Image Preview -->
+            <!-- Portfolio 2 Card -->
             <div class="card" onclick="openPortfolio('book2-wrapper')">
                 <div class="thumb-container">
                     <img src="thumb2.jpg" alt="Computational Design Cover" class="thumb-image">
