@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Architecture Portfolios</title>
+    <title>Architecture Portfolios | Selection</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Load Google Font for sophisticated typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Load jQuery and DearFlip -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/dflip/css/dflip.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/dflip/css/themify-icons.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/dflip/js/dflip.min.js"></script>
     
     <script>
-        // Globally disable the download button for all flipbooks
-        var dfOptions = {
-            hideDownload: true
-        };
+        // Globally disable the download button
+        var dfOptions = { hideDownload: true };
 
-        // Switch from landing screen to selected flipbook
+        // Switch to selected flipbook
         function openPortfolio(id) {
             document.getElementById('landing').style.display = 'none';
             document.getElementById('book1-wrapper').style.display = 'none';
             document.getElementById('book2-wrapper').style.display = 'none';
-            
             document.getElementById(id).style.display = 'block';
         }
 
-        // Switch from flipbook back to landing screen
+        // Switch back to landing screen
         function showLanding() {
             document.getElementById('book1-wrapper').style.display = 'none';
             document.getElementById('book2-wrapper').style.display = 'none';
@@ -34,92 +35,143 @@
     </script>
 
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Helvetica Neue', Arial, sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; overflow: hidden; color: #333; }
         
-        /* Dynamic Fluid Background */
+        /* Clean, Professional Office Smart Background */
         #landing {
             height: 100vh;
             width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 50px;
+            background-color: #f0f2f5; /* Subtle corporate grey */
+            flex-direction: column; /* Stack vertically for title */
+        }
+
+        #landing-title {
+            font-weight: 700;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .selection-container {
+            display: flex;
             gap: 40px;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: fluidBackground 15s ease infinite;
         }
 
-        @keyframes fluidBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Selection Cards */
+        /* Office Smart Cards */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px 40px;
-            border-radius: 12px;
-            text-align: center;
+            background: #ffffff;
+            width: 260px; /* Structured width */
+            border-radius: 4px; /* Minimal, clean edges */
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-            width: 220px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Soft, subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Contains the image */
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e1e4e8; /* Fine structure */
         }
         
-        .card:hover { transform: translateY(-10px); }
-        .card h2 { margin: 0 0 10px 0; font-size: 22px; color: #222; }
-        .card p { margin: 0; color: #666; font-size: 14px; }
-
-        /* Flipbook containers */
-        .book-wrapper {
-            display: none;
-            height: 100vh;
-            width: 100vw;
-            background: #e5e5e5;
-            position: relative;
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12); /* Lift and depth on hover */
         }
 
-        /* Return button */
+        /* Image Preview (Thumbnail) Container */
+        .thumb-container {
+            width: 100%;
+            height: 180px; /* Fixed height for consistency */
+            overflow: hidden;
+            background-color: #eaeaea; /* Placeholder grey */
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .thumb-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills space neatly without distortion */
+            object-position: top; /* Prioritize top of PDF (cover) */
+        }
+
+        /* Text Content within Card */
+        .card-content {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .card h2 { 
+            margin: 0 0 8px 0; 
+            font-size: 18px; 
+            color: #111; 
+            font-weight: 600; 
+        }
+        .card p { 
+            margin: 0; 
+            color: #666; 
+            font-size: 13px; 
+            line-height: 1.5; 
+        }
+
+        /* Flipbook wrappers */
+        .book-wrapper { display: none; height: 100vh; width: 100vw; background: #e5e5e5; position: relative; }
+
+        /* Minimal back button */
         .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 9999;
-            padding: 10px 18px;
-            background: #222;
+            position: absolute; top: 20px; left: 20px; z-index: 9999;
+            padding: 8px 16px;
+            background: rgba(34, 34, 34, 0.9);
             color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none; border-radius: 2px;
+            cursor: pointer; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
         }
-        .back-btn:hover { background: #444; }
+        .back-btn:hover { background: #000; }
         
         ._df_book { height: 100vh; width: 100vw; }
     </style>
 </head>
 <body>
 
+    <!-- Animated Landing Page -->
     <div id="landing">
-        <div class="card" onclick="openPortfolio('book1-wrapper')">
-            <h2>Portfolio 1</h2>
-            <p>View Collection</p>
-        </div>
-        <div class="card" onclick="openPortfolio('book2-wrapper')">
-            <h2>Portfolio 2</h2>
-            <p>View Collection</p>
+        <div id="landing-title">Select Portfolio</div>
+        
+        <div class="selection-container">
+            <!-- Portfolio 1 Card with Image Preview -->
+            <div class="card" onclick="openPortfolio('book1-wrapper')">
+                <div class="thumb-container">
+                    <img src="thumb1.jpg" alt="Portfolio 1 Cover" class="thumb-image">
+                </div>
+                <div class="card-content">
+                    <h2>Design & Planning</h2>
+                    <p>Recent architectural projects, concepts, and detailed studies.</p>
+                </div>
+            </div>
+
+            <!-- Portfolio 2 Card with Image Preview -->
+            <div class="card" onclick="openPortfolio('book2-wrapper')">
+                <div class="thumb-container">
+                    <img src="thumb2.jpg" alt="Portfolio 2 Cover" class="thumb-image">
+                </div>
+                <div class="card-content">
+                    <h2>Technical & Construction</h2>
+                    <p>Construction documentation, details, and material specifications.</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Portfolio 1 Viewer -->
     <div id="book1-wrapper" class="book-wrapper">
-        <button class="back-btn" onclick="showLanding()">← Back to Menu</button>
+        <button class="back-btn" onclick="showLanding()">← Menu</button>
         <div class="_df_book" source="portfolio1.pdf" id="book1"></div>
     </div>
 
+    <!-- Portfolio 2 Viewer -->
     <div id="book2-wrapper" class="book-wrapper">
-        <button class="back-btn" onclick="showLanding()">← Back to Menu</button>
+        <button class="back-btn" onclick="showLanding()">← Menu</button>
         <div class="_df_book" source="portfolio2.pdf" id="book2"></div>
     </div>
 
