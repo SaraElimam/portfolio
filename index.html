@@ -2,13 +2,27 @@
 <html>
 <head>
     <title>Architecture Portfolio</title>
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    </head>
+    <!-- Load jQuery (required for the flipbook to function) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Load the DearFlip library files -->
+    <link href="https://cdn.jsdelivr.net/npm/dflip/css/dflip.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/dflip/css/themify-icons.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/dflip/js/dflip.min.js"></script>
+    
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; background-color: #e5e5e5; }
+        /* Forces the flipbook to fill the entire browser window */
+        ._df_book { height: 100vh; width: 100vw; }
+    </style>
+</head>
 <body>
-    <iframe src="portfolio.pdf"></iframe>
+
+    <!-- The flipbook container. Ensure 'source' matches your PDF filename exactly -->
+    <div class="_df_book" source="portfolio.pdf" id="portfolio_book"></div>
+
 </body>
 </html>
